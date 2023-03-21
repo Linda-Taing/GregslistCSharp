@@ -33,7 +33,7 @@ public class Startup
         services.AddScoped<IDbConnection>(x => CreateDbConnection());
 
         services.AddScoped<HousesRepository>();
-        services.AddScoped<HousesController>();
+        services.AddScoped<HousesService>();
         services.AddScoped<AccountsRepository>();
         services.AddScoped<AccountService>();
     }
