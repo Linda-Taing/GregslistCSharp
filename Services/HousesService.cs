@@ -18,4 +18,16 @@ public class HousesService
         List<House> houses = _repo.FindAll();
         return houses;
     }
+
+    internal House Find(int id)
+    {
+        House house = _repo.FindOne(id);
+        if (house == null) throw new Exception($"No House with that id: {id}");
+        return house;
+    }
+    internal House Create(House houseData)
+    {
+        House house = _repo.Create(houseData);
+        return house;
+    }
 }

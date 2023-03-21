@@ -23,4 +23,30 @@ public class HousesRepository
         List<House> houses = _db.Query<House>(sql).ToList();
         return houses;
     }
+
+    internal House FindOne(int id)
+    {
+        string sql = @"
+        SELECT
+        *
+        FROM houses 
+        WHERE id = @id;
+        ";
+        House house = _db.Query<House>(sql, new { id }).FirstOrDefault();
+        return house;
+    }
+    internal House Create(House houseData)
+    {
+        string sql = @"
+        INSERT INTO houses
+        (room, bathroom, year, price, imgUrl, color, address, description)
+        VALUES
+        (@room, @bathroom, @year, @price, @imgUrl, @color, @address, @description);
+        SELECT LAST_INSERT_ID();
+        ";
+        int id = _db.ExecuteScalar<int>(sql, houseData);
+        houseData.Id = id;
+        return houseData;
+    }
+
 }
