@@ -30,4 +30,12 @@ public class HousesService
         House house = _repo.Create(houseData);
         return house;
     }
+
+    internal string Remove(int id)
+    {
+        House house = this.Find(id);
+        bool result = _repo.Remove(id);
+        if (!result) throw new Exception($"Something went terribly wrong when you deleted.");
+        return $"You deleted {house.Address} at {house.Price}";
+    }
 }
