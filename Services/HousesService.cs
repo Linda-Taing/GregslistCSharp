@@ -38,4 +38,21 @@ public class HousesService
         if (!result) throw new Exception($"Something went terribly wrong when you deleted.");
         return $"You deleted {house.Address} at {house.Price}";
     }
+
+    internal House Update(House updateData)
+    {
+        House original = this.Find(updateData.Id);
+        original.Room = updateData.Room != 0 ? updateData.Room : original.Room;
+        original.Bathroom = updateData.Bathroom != 0 ? updateData.Bathroom : original.Bathroom;
+        original.Year = updateData.Year != 0 ? updateData.Year : original.Year;
+        original.Price = updateData.Price != 0 ? updateData.Price : original.Price;
+        original.ImgUrl = updateData.ImgUrl != null ? updateData.ImgUrl : original.ImgUrl;
+        original.Color = updateData.Color != null ? updateData.Color : original.Color;
+        original.Address = updateData.Address != null ? updateData.Address : original.Address;
+        original.Description = updateData.Description != null ? updateData.Description : original.Description;
+        int rowsAffected = _repo.Update(original);
+        if (rowsAffected == 0) throw new Exception($"Could not modify {updateData.Address}");
+        if (rowsAffected > 1) throw new Exception($"Something terrible happened! Check DB for {updateData.Address}");
+        return original;
+    }
 }
