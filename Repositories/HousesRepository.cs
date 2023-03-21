@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace GregslistCSharp.Repositories
+namespace GregslistCSharp.Repositories;
+
+public class HousesRepository
 {
-    public class HousesRepository
+    private readonly IDbConnection _db;
+    public HousesRepository(IDbConnection db)
     {
-        
+        _db = db;
     }
 }
