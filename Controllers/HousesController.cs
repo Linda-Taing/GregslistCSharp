@@ -12,5 +12,9 @@ namespace GregslistCSharp.Controllers;
 
 public class HousesController : ControllerBase
 {
-
+    private readonly HousesService housesService;
+    public HousesController(HousesService housesService)
+    {
+        this.housesService = housesService;
+    }
 }
