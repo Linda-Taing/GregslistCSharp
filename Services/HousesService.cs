@@ -12,4 +12,10 @@ public class HousesService
     {
         _repo = repo;
     }
+
+    internal List<House> Find()
+    {
+        List<House> houses = _repo.FindAll();
+        return houses;
+    }
 }

@@ -12,4 +12,15 @@ public class HousesRepository
     {
         _db = db;
     }
+
+    internal List<House> FindAll()
+    {
+        string sql = @"
+        SELECT 
+        *
+        FROM houses;
+        ";
+        List<House> houses = _db.Query<House>(sql).ToList();
+        return houses;
+    }
 }

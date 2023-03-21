@@ -17,4 +17,17 @@ public class HousesController : ControllerBase
     {
         this.housesService = housesService;
     }
+    [HttpGet]
+    public ActionResult<List<House>> Find()
+    {
+        try
+        {
+            List<House> houses = housesService.Find();
+            return Ok(houses);
+        }
+        catch (Exception e)
+        {
+            return BadRequest(e.Message);
+        }
+    }
 }
